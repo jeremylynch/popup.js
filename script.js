@@ -19,6 +19,7 @@ function showPopup(html) {
   popupContainer.id = popupContainerId;
   html_with_close = html + "<div><a onClick='hidePopup()'>Close</a></div>"
   var popup = document.createElement('div');
+  popup.id = 'popup'
   popupContainer.appendChild(popup)
   popup.innerHTML = html_with_close;
 
@@ -46,6 +47,12 @@ function showPopup(html) {
   body.appendChild(popupContainer);
 
   setCookie(cname, true);
+
+  popupContainer.addEventListener('click', function(e) {
+    if (e.target.id != 'popup') {
+      hidePopup()
+    }
+  })
 }
 
 function hidePopup() {
