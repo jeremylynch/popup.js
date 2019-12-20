@@ -11,11 +11,18 @@ function showPopup(html) {
   }
 
   var popupContainer = document.createElement('div');
-  popupContainer.id = popupContainerId;
-  html_with_close = html + "<a onClick='hidePopup()'>close</a>"
-  popupContainer.innerHTML = html_with_close;
-
   popupContainer.style.cssText = `
+    position: relative;
+    height: 100%;
+    width: 100%;
+  `
+  popupContainer.id = popupContainerId;
+  html_with_close = html + "<div><a onClick='hidePopup()'>Close</a></div>"
+  var popup = document.createElement('div');
+  popupContainer.appendChild(popup)
+  popup.innerHTML = html_with_close;
+
+  popup.style.cssText = `
     position:absolute;
     top:300px;
     left:300px;
@@ -30,6 +37,7 @@ function showPopup(html) {
     transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: center;
     padding: 2rem;
   `;
