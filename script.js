@@ -61,5 +61,6 @@
       }
 
       window.showPopup = showPopup;
+      window.hidePopup = hidePopup;
     });
   })()
