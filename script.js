@@ -38,8 +38,8 @@ function showPopup(popupBodyHtml) {
 
   var popup = document.createElement('div');
   popup.innerHTML = `
-    <div style="width: 100%; text-align: right;">
-      <button onClick='hidePopup()' style="cursor: pointer;"><i>&times;</i></button>
+    <div style="position: absolute; right: 0.5rem; top: 0.5rem;">
+      <div onClick='hidePopup()' style="cursor: pointer; height: 24px; width: 24px;"><svg viewBox='0 0 24 24'><path d='M19 6.41l-1.41-1.41-5.59 5.59-5.59-5.59-1.41 1.41 5.59 5.59-5.59 5.59 1.41 1.41 5.59-5.59 5.59 5.59 1.41-1.41-5.59-5.59z'/><path d='M0 0h24v24h-24z' fill='none'/></svg></div>
     </div>
     <div style="text-align: center">
       ${popupBodyHtml}
@@ -61,6 +61,9 @@ function showPopup(popupBodyHtml) {
     padding: 1rem 2rem 1rem 2rem;
     z-index: 1070;
     background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   `;
 
   popupContainer.appendChild(popup);
