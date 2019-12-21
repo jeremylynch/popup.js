@@ -12,25 +12,42 @@ function showPopup(html) {
 
   var popupContainer = document.createElement('div');
   popupContainer.style.cssText = `
-    position: relative;
+    position: absolute;
     height: 100%;
     width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
   `
   popupContainer.id = popupContainerId;
-  html_with_close = html + "<div><a onClick='hidePopup()'>Close</a></div>"
+  var close_button = document.createElement('div');
+  close_button.style.cssText = `
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+  `
+  close_button.innerHTML = "<a onClick='hidePopup()'><svg viewBox='0 0 24 24'><path d='M19 6.41l-1.41-1.41-5.59 5.59-5.59-5.59-1.41 1.41 5.59 5.59-5.59 5.59 1.41 1.41 5.59-5.59 5.59 5.59 1.41-1.41-5.59-5.59z'/><path d='M0 0h24v24h-24z' fill='none'/></svg></a>";
+
+
+  html_with_close = html;
   var popup = document.createElement('div');
-  popup.id = 'popup'
-  popupContainer.appendChild(popup)
+  popup.id = 'popup';
+  popupContainer.appendChild(popup);
   popup.innerHTML = html_with_close;
+  popup.appendChild(close_button);
 
   popup.style.cssText = `
-    position:absolute;
-    top:300px;
-    left:300px;
-    width:400px;
+    position: absolute;
+    top: 300px;
+    left: 300px;
+    width: 400px;
     max-width: 90vw;
-    min-height:200px;
-    border:1px solid #ddd;
+    min-height: 200px;
+    border: 1px solid #ddd;
     box-shadow: 0 5px 20px #ccc;
     border-radius: 0.8rem;
     top: 50%;
