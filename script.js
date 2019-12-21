@@ -38,6 +38,9 @@ function showPopup(popupBodyHtml) {
 
   var popup = document.createElement('div');
   popup.innerHTML = `
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+    </style>
     <div style="position: absolute; right: 0.5rem; top: 0.5rem;">
       <div onClick='hidePopup()' style="cursor: pointer; height: 24px; width: 24px;"><svg viewBox='0 0 24 24'><path d='M19 6.41l-1.41-1.41-5.59 5.59-5.59-5.59-1.41 1.41 5.59 5.59-5.59 5.59 1.41 1.41 5.59-5.59 5.59 5.59 1.41-1.41-5.59-5.59z'/><path d='M0 0h24v24h-24z' fill='none'/></svg></div>
     </div>
@@ -53,7 +56,6 @@ function showPopup(popupBodyHtml) {
     width:400px;
     max-width: 90vw;
     min-height: 200px;
-    border: 1px solid #ddd;
     box-shadow: 0 5px 20px #ccc;
     border-radius: 0.8rem;
     transform: translate(-50%, -50%);
@@ -64,6 +66,7 @@ function showPopup(popupBodyHtml) {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Open Sans', sans-serif;
   `;
 
   popupContainer.appendChild(popup);
