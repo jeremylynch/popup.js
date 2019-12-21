@@ -1,7 +1,7 @@
 var popupContainerId = uuidv4();
 var cname = 'locale-popup';
 
-function showPopup(html) {
+function showPopup(popupBodyHtml) {
 
   var cookie = getCookie(cname);
 
@@ -21,53 +21,58 @@ function showPopup(html) {
     right: 0;
   `
   popupContainer.id = popupContainerId;
-  var close_button = document.createElement('div');
-  close_button.style.cssText = `
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    height: 24px;
-    width: 24px;
-    cursor: pointer;
-  `
-  close_button.innerHTML = "<a onClick='hidePopup()'><svg viewBox='0 0 24 24'><path d='M19 6.41l-1.41-1.41-5.59 5.59-5.59-5.59-1.41 1.41 5.59 5.59-5.59 5.59 1.41 1.41 5.59-5.59 5.59 5.59 1.41-1.41-5.59-5.59z'/><path d='M0 0h24v24h-24z' fill='none'/></svg></a>";
 
+  var popupBackdrop = document.createElement('div');
+  popupBackdrop.style.cssText = `
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1060;
+    opacity: 0.5;
+    background-color: #6c757d;
+  `;
 
-  html_with_close = html;
+  popupContainer.appendChild(popupBackdrop);
+
   var popup = document.createElement('div');
-  popup.id = 'popup';
-  popupContainer.appendChild(popup);
-  popup.innerHTML = html_with_close;
-  popup.appendChild(close_button);
+  popup.innerHTML = `
+    <div style="width: 100%; text-align: right;">
+      <button onClick='hidePopup()' style="cursor: pointer;"><i>&times;</i></button>
+    </div>
+    <div style="text-align: center">
+      ${popupBodyHtml}
+    </div>
+  `;
 
   popup.style.cssText = `
-    position: absolute;
-    top: 300px;
-    left: 300px;
-    width: 400px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width:400px;
     max-width: 90vw;
     min-height: 200px;
     border: 1px solid #ddd;
     box-shadow: 0 5px 20px #ccc;
     border-radius: 0.8rem;
-    top: 50%;
-    left: 50%;
     transform: translate(-50%, -50%);
-    display: flex;
-    align-items: center;
-    flex-direction: column;
     justify-content: center;
-    padding: 2rem;
+    padding: 1rem 2rem 1rem 2rem;
+    z-index: 1070;
+    background: white;
   `;
+
+  popupContainer.appendChild(popup);
 
   var body = document.getElementsByTagName('body')[0];
   body.appendChild(popupContainer);
 
   setCookie(cname, true);
 
-  popupContainer.addEventListener('click', function(e) {
-    if (e.target.id != 'popup') {
-      hidePopup()
+  document.addEventListener('click', function(e) {
+    if (!popup.contains(e.target)) {
+      hidePopup();
     }
   })
 }
