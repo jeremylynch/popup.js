@@ -2,9 +2,10 @@
   "name": "popup",
   "version": "1.0.0",
   "description": "",
-  "main": "build/script.js",
+  "main": "dist/bundle.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -17,11 +18,7 @@
   },
   "homepage": "https://github.com/jeremylynch/popup.js#readme",
   "devDependencies": {
-    "@babel/cli": "^7.7.7",
-    "@babel/core": "^7.7.7",
-    "@babel/preset-env": "^7.7.7"
-  },
-  "dependencies": {
-    "@babel/polyfill": "^7.7.0"
+    "webpack": "^4.41.4",
+    "webpack-cli": "^3.3.10"
   }
 }
