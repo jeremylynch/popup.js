@@ -1,13 +1,13 @@
-<script src="dist/bundle.js"></script>
 <body style="position: relative">
   <h1>Popup Demo</h1>
 </body>
 <script>
-  fetch('https://freegeoip.app/json/').then(function (res) {
-    return res.json();
-  }).then(function (data) {
-    if (data.country_code == 'AU') {
-      showPopup("<h3 style='text-align: center;'>We\’ve noticed you may not be in Australia.</h3><p>If you’re not yet an Aussie, to ensure we can give you relevant information and advice for migrating to Australia, please click here:</p> <a style='display: inline-block; margin-top: 0.5rem; padding: 1rem; border-radius: 0.5rem; background: #333333; color: white; text-decoration: none;' href='/'>Visit International site</a>");
-    }
-  });
+  var script = "dist/bundle.js"
+  var el = document.createElement('script');
+  var body = document.getElementsByTagName('body')[0]
+  el.onload = function() {
+    showPopup("<h3 style='text-align: center;'>We\’ve noticed you may not be in Australia.</h3><p>If you’re not yet an Aussie, to ensure we can give you relevant information and advice for migrating to Australia, please click here:</p> <a style='display: inline-block; margin-top: 0.5rem; padding: 1rem; border-radius: 0.5rem; background: #333333; color: white; text-decoration: none;' href='https://www.techsonthemove.co.uk/'>Visit International site</a>");
+  }
+  el.src = script
+  body.appendChild(el)
 </script>
