@@ -26,7 +26,7 @@ function showPopup(popupBodyHtml) {
     right: 0;
     left: 0;
     bottom: 0;
-    z-index: 1060;
+    z-index: 10060;
     opacity: 0.5;
     background-color: #6c757d;
   `;
@@ -58,7 +58,7 @@ function showPopup(popupBodyHtml) {
     transform: translate(-50%, -50%);
     justify-content: center;
     padding: 1rem 2rem 1rem 2rem;
-    z-index: 1070;
+    z-index: 10070;
     background: white;
     display: flex;
     justify-content: center;
