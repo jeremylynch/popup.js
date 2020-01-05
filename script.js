@@ -26,7 +26,7 @@ function showPopup(popupBodyHtml) {
     right: 0;
     left: 0;
     bottom: 0;
-    z-index: 10060;
+    z-index: 100060;
     opacity: 0.5;
     background-color: #6c757d;
   `;
