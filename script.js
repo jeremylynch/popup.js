@@ -72,6 +72,7 @@ function showPopup(options) {
     justify-content: center;
     align-items: center;
     font-family: 'Open Sans', sans-serif;
+    border-top: 0.25rem solid #00357e;
   `;
 
   popupContainer.appendChild(popup);
