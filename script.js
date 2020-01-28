@@ -1,9 +1,14 @@
 var popupContainerId = uuidv4();
 
-function showPopup(popupBodyHtml) {
+function showPopup(options) {
 
-  console.log('hi')
-  if (window.sessionStorage.popupShown === "true") {
+  let defaultConfig = {
+    onceOnly: true
+  }
+
+  let config = {...defaultConfig, ...options}
+
+  if (config.onceOnly && window.sessionStorage.popupShown === "true") {
     return
   }
 
@@ -26,7 +31,7 @@ function showPopup(popupBodyHtml) {
     right: 0;
     left: 0;
     bottom: 0;
-    z-index: 100060;
+    z-index: 10000;
     opacity: 0.5;
     background-color: #6c757d;
   `;
@@ -34,6 +39,9 @@ function showPopup(popupBodyHtml) {
   popupContainer.appendChild(popupBackdrop);
 
   var popup = document.createElement('div');
+
+  let html = config.html ? config.html : document.querySelector(config.htmlQuerySelector).innerHTML
+
   popup.innerHTML = `
     <style>
       @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
@@ -42,7 +50,7 @@ function showPopup(popupBodyHtml) {
       <div onClick='hidePopup()' style="cursor: pointer; height: 24px; width: 24px;"><svg viewBox='0 0 24 24'><path d='M19 6.41l-1.41-1.41-5.59 5.59-5.59-5.59-1.41 1.41 5.59 5.59-5.59 5.59 1.41 1.41 5.59-5.59 5.59 5.59 1.41-1.41-5.59-5.59z'/><path d='M0 0h24v24h-24z' fill='none'/></svg></div>
     </div>
     <div style="text-align: center">
-      ${popupBodyHtml}
+      ${html}
     </div>
   `;
 
